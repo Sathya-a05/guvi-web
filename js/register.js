@@ -19,7 +19,7 @@ $(document).ready(function(){
         // AJAX request
         $.ajax({
             type: 'POST',
-            url: '/GUVI-WEBASSIGNMENT/GUVI-webapp/php/register.php', // URL to your PHP file
+            url: '/PHP-MYSQL-MONGODB-REDIUS-BOOTSTRAP-AJAX-WEBSITE/php/register.php', // URL to your PHP file
             data: data,
             success: function(response){
                 if(response=="Error: Username or email already exists."){

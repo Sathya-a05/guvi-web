@@ -7,7 +7,7 @@ header('Access-Control-Allow-Credentials: true');
 $servername = "127.0.0.1:3306";
 $username = "root"; // Your MySQL username
 $password = ""; // Your MySQL password
-$dbname = "guviusers"; // Your MySQL database name
+$dbname = "user-login-data"; // Your MySQL database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -25,7 +25,7 @@ $password = $_POST['password'];
 $username = $conn->real_escape_string($username);
 
 // Prepare SQL statement to retrieve user from database
-$stmt = $conn->prepare("SELECT * FROM usersdata WHERE username = ?");
+$stmt = $conn->prepare("SELECT * FROM profiles WHERE name = ?");
 $stmt->bind_param("s", $username);
 
 // Execute SQL statement

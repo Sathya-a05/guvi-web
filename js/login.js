@@ -11,7 +11,7 @@ function loginUser() {
     // AJAX request
     $.ajax({
         type: 'POST',
-        url: '/GUVI-WEBASSIGNMENT/GUVI-webapp/php/login.php', // URL to your PHP login script
+        url: '/PHP-MYSQL-MONGODB-REDIUS-BOOTSTRAP-AJAX-WEBSITE/php/login.php', // URL to your PHP login script
         data: data,
         success: function(response){
 

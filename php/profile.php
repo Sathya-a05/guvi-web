@@ -8,8 +8,8 @@ use MongoDB\Client;
 use Predis\Client as RedisClient;
 
 // Connect to MongoDB
-$client = new Client("mongodb://localhost:27017");
-$collection = $client->guviusers->profiles;
+$client = new Client("mongodb+srv://Dhanush:NqqgN1WYSJrqr0e2@cluster0.2s94ek1.mongodb.net/");
+$collection = $client->selectDatabase('user-login-data')->selectCollection('profiles');
 
 // Connect to Redis server
 $redis = new RedisClient();
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Retrieve the username from the POST data
+    // Retrieve the username from the GET parameters
     $username = $_GET['username'];
     $userData = $redis->hgetall($username);
     if (!empty($userData)) {
@@ -69,5 +69,4 @@ else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Invalid request method
     echo json_encode(['success' => false, 'message' => 'Invalid request method']);
 }
-
 ?>

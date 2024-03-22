@@ -7,7 +7,7 @@ header('Access-Control-Allow-Credentials: true');
 $servername = "127.0.0.1:3306";
 $username = "root"; // Your MySQL username
 $password = ""; // Your MySQL password
-$dbname = "guviusers"; // Your MySQL database name
+$dbname = "user-login-data"; // Your MySQL database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -25,7 +25,7 @@ $password = $_POST['password'];
 $username = $conn->real_escape_string($username);
 $email = $conn->real_escape_string($email);
 // Check if username or email already exists
-$sql = "SELECT * FROM usersdata WHERE username = ? OR email = ?";
+$sql = "SELECT * FROM profiles WHERE name = ? OR email = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss", $username, $email);
 $stmt->execute();
@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
     // Prepare and bind SQL statement using prepared statement
-    $sql = "INSERT INTO usersdata (username, email, password) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO profiles (name,email, password) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sss", $username, $email, $passwordHash);
 
